@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@appTypes/*": ["src//types/*"]
+      "@appTypes/*": ["src/types/*"],
+      "@api/*": ["src/api/*"],
+      "@layouts/*": ["src/layouts/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
