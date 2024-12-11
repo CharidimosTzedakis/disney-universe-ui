@@ -12,7 +12,11 @@ import { mapCharactersToTableData } from "./helpers";
 import type { CharactersTableEntry, TableParams } from "./types";
 import "./charactersTable.css";
 
-export default function CharactersTable() {
+export default function CharactersTable({
+  onCharacterSelect,
+}: {
+  onCharacterSelect: (characterId: number) => void;
+}) {
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       current: 1,
@@ -50,6 +54,7 @@ export default function CharactersTable() {
     const newSelectedRowKeys =
       selectedKey === selectedRowKeys?.[0] ? [] : [selectedKey];
     setSelectedRowKeys(newSelectedRowKeys);
+    onCharacterSelect(selectedKey);
   };
 
   const rowClassName = (record: CharactersTableEntry) => {

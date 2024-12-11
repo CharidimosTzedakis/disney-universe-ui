@@ -1,11 +1,22 @@
 import CharactersTable from "@components/charactersTable";
-
-//TODO: to use Grid v2
+import CharacterDetailsModal from "@components/characterDetailsModal";
+import { useState } from "react";
 
 export default function DashboardLayout() {
+  const [selectedCharacterId, setSelectedCharacterId] = useState<number | null>(
+    null,
+  );
+
   return (
     <div>
-      <CharactersTable />
+      <CharactersTable
+        onCharacterSelect={(characterId) => setSelectedCharacterId(characterId)}
+      />
+      <CharacterDetailsModal
+        isOpen={!!selectedCharacterId}
+        characterId={selectedCharacterId}
+        onClose={() => setSelectedCharacterId(null)}
+      />
     </div>
   );
 }
