@@ -11,3 +11,8 @@
 - `Urql` GraphQL client was chosen because it provides simple document caching that can be used with the pagination
   queries while maintaining a small bundle size 
 - 
+
+
+### Error handling
+
+### Accessibility
