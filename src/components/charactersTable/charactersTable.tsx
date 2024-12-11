@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "urql";
-import { graphql } from "@gql/gql";
+import { charactersQueryDocument } from "@api/gqlQueries";
 import { Table } from "antd";
-import type { GetProp, TableProps } from "antd";
-import type { SorterResult } from "antd/es/table/interface";
 import {
   charactersTableColumns,
   pageSizeOptions,
@@ -11,40 +9,7 @@ import {
   TOTAL_NUMBER_OF_ITEMS,
 } from "./tableConfig";
 import { mapCharactersToTableData } from "./helpers";
-import type { CharactersTableEntry } from "./types";
-
-const CharactersQuery = graphql(`
-  query allCharacters($page: Int!, $pageSize: Int!) {
-    characters(page: $page, pageSize: $pageSize) {
-      items {
-        _id
-        name
-        tvShows
-        videoGames
-        allies
-        enemies
-      }
-      paginationInfo {
-        hasPreviousPage
-        hasNextPage
-        pageItemCount
-        totalPages
-      }
-    }
-  }
-`);
-
-type TablePaginationConfig = Exclude<
-  GetProp<TableProps, "pagination">,
-  boolean
->;
-
-interface TableParams {
-  pagination: TablePaginationConfig;
-  sortField?: SorterResult<any>["field"];
-  sortOrder?: SorterResult<any>["order"];
-  filters?: Parameters<GetProp<TableProps, "onChange">>[1];
-}
+import type { CharactersTableEntry, TableParams } from "./types";
 
 export default function CharactersTable() {
   const [tableParams, setTableParams] = useState<TableParams>({
@@ -60,15 +25,13 @@ export default function CharactersTable() {
   });
 
   const [result] = useQuery({
-    query: CharactersQuery,
+    query: charactersQueryDocument,
     variables: {
-      page: tableParams.pagination.current,
-      pageSize: tableParams.pagination.pageSize,
+      page: tableParams.pagination.current!,
+      pageSize: tableParams.pagination.pageSize!,
     },
   });
   const { data, fetching } = result;
-  const { pageItemCount = 0, totalPages = 0 } =
-    data?.characters?.paginationInfo ?? {};
 
   const onPaginationChange = (page: number, pageSize: number) => {
     setTableParams({
