@@ -1,20 +1,17 @@
 import { useState } from "react";
-import {
-  DataGrid,
-  GridValidRowModel,
-  GridPaginationModel,
-} from "@mui/x-data-grid";
-import Paper from "@mui/material/Paper";
 import { useQuery } from "urql";
 import { graphql } from "@gql/gql";
-import { Character } from "@gql/graphql";
-import CharactersTablePagination from "./charactersTablePagination";
-
+import { Table } from "antd";
+import type { GetProp, TableProps } from "antd";
+import type { SorterResult } from "antd/es/table/interface";
 import {
   charactersTableColumns,
   pageSizeOptions,
   INITIAL_PAGE_SIZE,
+  TOTAL_NUMBER_OF_ITEMS,
 } from "./tableConfig";
+import { mapCharactersToTableData } from "./helpers";
+import type { CharactersTableEntry } from "./types";
 
 const CharactersQuery = graphql(`
   query allCharacters($page: Int!, $pageSize: Int!) {
@@ -37,55 +34,61 @@ const CharactersQuery = graphql(`
   }
 `);
 
-interface CharactersTableRow extends GridValidRowModel, Character {}
+type TablePaginationConfig = Exclude<
+  GetProp<TableProps, "pagination">,
+  boolean
+>;
+
+interface TableParams {
+  pagination: TablePaginationConfig;
+  sortField?: SorterResult<any>["field"];
+  sortOrder?: SorterResult<any>["order"];
+  filters?: Parameters<GetProp<TableProps, "onChange">>[1];
+}
 
 export default function CharactersTable() {
-  const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
-    page: 0,
-    pageSize: INITIAL_PAGE_SIZE,
+  const [tableParams, setTableParams] = useState<TableParams>({
+    pagination: {
+      current: 1,
+      pageSize: INITIAL_PAGE_SIZE,
+      showQuickJumper: true,
+      showSizeChanger: true,
+      pageSizeOptions,
+      showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+      total: TOTAL_NUMBER_OF_ITEMS,
+    },
   });
 
   const [result] = useQuery({
     query: CharactersQuery,
     variables: {
-      page: paginationModel.page + 1, // first page is at 0 index for DataGrid component
-      pageSize: paginationModel.pageSize,
+      page: tableParams.pagination.current,
+      pageSize: tableParams.pagination.pageSize,
     },
   });
   const { data, fetching } = result;
   const { pageItemCount = 0, totalPages = 0 } =
     data?.characters?.paginationInfo ?? {};
 
+  const onPaginationChange = (page: number, pageSize: number) => {
+    setTableParams({
+      pagination: {
+        ...tableParams.pagination,
+        current: page,
+        pageSize,
+      },
+    });
+  };
+
   return (
-    <Paper sx={{ height: 600 }}>
-      <DataGrid
-        isRowSelectable={() => true}
-        disableColumnMenu
-        showCellVerticalBorder
-        loading={fetching}
-        slots={{
-          pagination: CharactersTablePagination,
-        }}
-        rows={data?.characters?.items as CharactersTableRow[]}
-        getRowId={(row) => row._id!}
-        columns={charactersTableColumns}
-        paginationMode="server"
-        paginationModel={paginationModel}
-        initialState={{
-          pagination: {
-            paginationModel: { pageSize: INITIAL_PAGE_SIZE },
-            rowCount: pageItemCount * totalPages,
-          },
-        }}
-        pageSizeOptions={pageSizeOptions}
-        rowCount={pageItemCount * totalPages}
-        onPaginationModelChange={(model) => {
-          setPaginationModel(model);
-        }}
-        sx={{
-          border: 0,
-        }}
-      />
-    </Paper>
+    <Table<CharactersTableEntry>
+      columns={charactersTableColumns}
+      dataSource={mapCharactersToTableData(data?.characters?.items)}
+      loading={fetching}
+      pagination={{
+        ...tableParams.pagination,
+        onChange: onPaginationChange,
+      }}
+    />
   );
 }
