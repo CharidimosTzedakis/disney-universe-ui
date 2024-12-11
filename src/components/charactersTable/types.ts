@@ -1,7 +1,7 @@
 export interface CharactersTableEntry {
   key: React.Key;
-  numOfTVShows: number;
-  numOfVideoGames: number;
+  numOfTVShows: string;
+  numOfVideoGames: string;
   alliesNames: string;
   enemiesNames: string;
 }

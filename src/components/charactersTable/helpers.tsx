@@ -15,9 +15,9 @@ export function mapCharactersToTableData(
     .map<CharactersTableEntry>((item) => ({
       key: item._id!,
       name: item?.name ?? "",
-      numOfTVShows: 2,
-      numOfVideoGames: 2,
-      alliesNames: "",
-      enemiesNames: "",
+      numOfTVShows: `${item?.tvShows?.length ?? ""}`,
+      numOfVideoGames: `${item?.videoGames?.length ?? ""}`,
+      alliesNames: item?.allies?.join(", ") ?? "",
+      enemiesNames: item?.enemies?.join(", ") ?? "",
     }));
 }
