@@ -1,0 +1,3 @@
+.character-table .ant-table-tbody > tr:hover {
+    cursor: pointer;
+}

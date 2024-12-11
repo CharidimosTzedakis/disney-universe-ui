@@ -10,6 +10,7 @@ import {
 } from "./tableConfig";
 import { mapCharactersToTableData } from "./helpers";
 import type { CharactersTableEntry, TableParams } from "./types";
+import "./charactersTable.css";
 
 export default function CharactersTable() {
   const [tableParams, setTableParams] = useState<TableParams>({
@@ -23,6 +24,7 @@ export default function CharactersTable() {
       total: TOTAL_NUMBER_OF_ITEMS,
     },
   });
+  const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
 
   const [result] = useQuery({
     query: charactersQueryDocument,
@@ -43,8 +45,20 @@ export default function CharactersTable() {
     });
   };
 
+  const onRowClick = (record: CharactersTableEntry) => {
+    const selectedKey = record.key;
+    const newSelectedRowKeys =
+      selectedKey === selectedRowKeys?.[0] ? [] : [selectedKey];
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+
+  const rowClassName = (record: CharactersTableEntry) => {
+    return selectedRowKeys.includes(record.key) ? "ant-table-row-selected" : "";
+  };
+
   return (
     <Table<CharactersTableEntry>
+      className="character-table"
       columns={charactersTableColumns}
       dataSource={mapCharactersToTableData(data?.characters?.items)}
       loading={fetching}
@@ -52,6 +66,10 @@ export default function CharactersTable() {
         ...tableParams.pagination,
         onChange: onPaginationChange,
       }}
+      rowClassName={rowClassName}
+      onRow={(record) => ({
+        onClick: () => onRowClick(record),
+      })}
     />
   );
 }

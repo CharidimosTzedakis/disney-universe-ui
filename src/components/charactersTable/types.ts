@@ -1,7 +1,7 @@
 import type { GetProp, TableProps } from "antd";
 
 export interface CharactersTableEntry {
-  key: React.Key;
+  key: number;
   name: string;
   numOfTVShows: string;
   numOfVideoGames: string;
