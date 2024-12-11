@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@components": path.resolve(__dirname, "./src/components"),
-      "@appTypes": path.resolve(__dirname, "./src/types"),
+      "@gql": path.resolve(__dirname, "./src/gql"),
       "@api": path.resolve(__dirname, "./src/api"),
       "@layouts": path.resolve(__dirname, "./src/layouts"),
     },

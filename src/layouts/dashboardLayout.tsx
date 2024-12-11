@@ -1,4 +1,4 @@
-import CharactersTable from "@components/charactersTable.tsx";
+import CharactersTable from "@components/charactersTable";
 
 //TODO: to use Grid v2
 
