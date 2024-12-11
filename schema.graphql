@@ -1,0 +1,51 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+type Character {
+  _id: Int
+  url: String
+  name: String
+  sourceUrl: String
+  imageUrl: String
+  films: [String]
+  shortFilms: [String]
+  tvShows: [String]
+  videoGames: [String]
+  alignment: String
+  parkAttractions: [String]
+  allies: [String]
+  enemies: [String]
+}
+
+input CharacterFilterInput {
+  id: Int
+  name: String
+  films: String
+  shortFilms: String
+  tvShows: String
+  videoGames: String
+  alignment: String
+  parkAttractions: String
+  allies: String
+  enemies: String
+}
+
+type CharacterPage {
+  items: [Character]
+  paginationInfo: paginationInfo
+}
+
+type paginationInfo {
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  pageItemCount: Int!
+  totalPages: Int!
+}
+
+type Query {
+  characters(page: Int, pageSize: Int, filter: CharacterFilterInput): CharacterPage
+}
+

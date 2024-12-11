@@ -2,6 +2,14 @@
 
 ## Description
 
+## Instructions
+
+- Start up the project using the command:
+```bash
+pnpm run dev
+```
+- navigate to [http://localhost:5173/]()
+
 ## Implementation
 
 - static extraction for css to make emotion more performant in first render // PENDING
@@ -13,6 +21,11 @@
   queries while maintaining a small bundle size 
 - Graphql schema is leveraged for typing the data, using `graphql-codegen` tool to automatically generate the necessary types
   and provide type safety
+
+To download any latest version of the graphQL schema, use the following command:
+```bash
+get-graphql-schema https://api.disneyapi.dev/graphql > schema.graphql
+```
 
 
 ### Error handling
