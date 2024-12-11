@@ -8,6 +8,8 @@ export const charactersTableColumns: TableColumnsType<CharactersTableEntry> = [
     dataIndex: "name",
     key: "name",
     fixed: "left",
+    sorter: (a, b) => a.name.localeCompare(b.name),
+    sortDirections: ["descend", "ascend"],
   },
   {
     title: "# TV shows",
