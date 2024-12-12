@@ -3,6 +3,7 @@ import { Flex, Layout, Typography, theme, Divider } from "antd";
 import CharactersTable from "@components/charactersTable";
 import CharacterDetailsModal from "@components/characterDetailsModal";
 import SearchForm from "@components/searchForm";
+import CharactersPieChart from "@components/pieChart";
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -48,11 +49,15 @@ export default function DashboardLayout() {
           <SearchForm />
           <Divider />
           <Title level={2}>Characters Table</Title>
-          <CharactersTable
-            onCharacterSelect={({ id, name }: { id: number; name: string }) =>
-              setSelectedCharacter({ id, name })
-            }
-          />
+          <Flex vertical={false} wrap align="center" gap="middle">
+            <CharactersTable
+              onCharacterSelect={({ id, name }: { id: number; name: string }) =>
+                setSelectedCharacter({ id, name })
+              }
+            />
+            <CharactersPieChart />
+          </Flex>
+
           <CharacterDetailsModal
             isOpen={!!selectedCharacter}
             selectedCharacter={selectedCharacter}
