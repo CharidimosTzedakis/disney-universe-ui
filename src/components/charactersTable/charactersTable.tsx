@@ -15,7 +15,7 @@ import "./charactersTable.css";
 export default function CharactersTable({
   onCharacterSelect,
 }: {
-  onCharacterSelect: (characterId: number) => void;
+  onCharacterSelect: ({ id, name }: { id: number; name: string }) => void;
 }) {
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
@@ -54,7 +54,7 @@ export default function CharactersTable({
     const newSelectedRowKeys =
       selectedKey === selectedRowKeys?.[0] ? [] : [selectedKey];
     setSelectedRowKeys(newSelectedRowKeys);
-    onCharacterSelect(selectedKey);
+    onCharacterSelect({ id: selectedKey, name: record.name });
   };
 
   const rowClassName = (record: CharactersTableEntry) => {

@@ -3,19 +3,24 @@ import CharacterDetailsModal from "@components/characterDetailsModal";
 import { useState } from "react";
 
 export default function DashboardLayout() {
-  const [selectedCharacterId, setSelectedCharacterId] = useState<number | null>(
-    null,
-  );
+  const [selectedCharacter, setSelectedCharacter] = useState<{
+    id: number;
+    name: string;
+  } | null>(null);
 
   return (
     <div>
       <CharactersTable
-        onCharacterSelect={(characterId) => setSelectedCharacterId(characterId)}
+        onCharacterSelect={({ id, name }: { id: number; name: string }) =>
+          setSelectedCharacter({ id, name })
+        }
       />
       <CharacterDetailsModal
-        isOpen={!!selectedCharacterId}
-        characterId={selectedCharacterId}
-        onClose={() => setSelectedCharacterId(null)}
+        isOpen={!!selectedCharacter}
+        selectedCharacter={selectedCharacter}
+        onClose={() => {
+          setSelectedCharacter(null);
+        }}
       />
     </div>
   );
