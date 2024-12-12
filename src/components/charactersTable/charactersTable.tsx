@@ -63,7 +63,8 @@ export default function CharactersTable({
 
   return (
     <Table<CharactersTableEntry>
-      className="character-table"
+      className="characters-table"
+      scroll={{ y: 700 }}
       columns={charactersTableColumns}
       dataSource={mapCharactersToTableData(data?.characters?.items)}
       loading={fetching}
