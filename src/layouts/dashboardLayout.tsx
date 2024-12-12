@@ -43,10 +43,13 @@ export default function DashboardLayout() {
             borderRadius: borderRadiusLG,
             maxWidth: 1600,
             height: "100vh",
+            alignSelf: "center",
           }}
         >
           <Title level={2}>Search characters</Title>
-          <SearchForm />
+          <Flex>
+            <SearchForm />
+          </Flex>
           <Divider />
           <Title level={2}>Characters Table</Title>
           <Flex vertical={false} wrap align="center" gap="middle">

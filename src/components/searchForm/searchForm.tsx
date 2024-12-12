@@ -22,7 +22,7 @@ export default function SearchForm() {
       form={form}
       name="searchCharacterForm"
       // onFinish={onFinish}
-      style={{ maxWidth: 600 }}
+      style={{ minWidth: 330 }}
     >
       <Form.Item name="characterName" label="Character name">
         <Input />
