@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Flex, Layout, Typography, theme, Divider } from "antd";
 import CharactersTable from "@components/charactersTable";
 import CharacterDetailsModal from "@components/characterDetailsModal";
-import { Flex, Layout, Typography, theme } from "antd";
+import SearchForm from "@components/searchForm";
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -43,6 +44,10 @@ export default function DashboardLayout() {
             height: "100vh",
           }}
         >
+          <Title level={2}>Search characters</Title>
+          <SearchForm />
+          <Divider />
+          <Title level={2}>Characters Table</Title>
           <CharactersTable
             onCharacterSelect={({ id, name }: { id: number; name: string }) =>
               setSelectedCharacter({ id, name })
