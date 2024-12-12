@@ -20,3 +20,16 @@ export const charactersQueryDocument = graphql(`
     }
   }
 `);
+
+export const characterDetailsQueryDocument = graphql(`
+  query character($filter: CharacterFilterInput!) {
+    characters(filter: $filter) {
+      items {
+        _id
+        tvShows
+        videoGames
+        imageUrl
+      }
+    }
+  }
+`);

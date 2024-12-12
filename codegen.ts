@@ -5,7 +5,7 @@ dotenv.config();
 
 const config: CodegenConfig = {
   schema: process.env.VITE_DISNEY_GRAPHQL_API,
-  documents: ["src/**/*.tsx"],
+  documents: ["src/api/gqlQueries.ts"],
   ignoreNoDocuments: true,
   generates: {
     "./src/gql/": {
