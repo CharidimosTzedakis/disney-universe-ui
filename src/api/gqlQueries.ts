@@ -8,6 +8,7 @@ export const charactersQueryDocument = graphql(`
         name
         tvShows
         videoGames
+        films
         allies
         enemies
       }
