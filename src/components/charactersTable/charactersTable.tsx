@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "urql";
 import { charactersQueryDocument } from "@api/gqlQueries";
 import { Table } from "antd";
@@ -8,6 +8,7 @@ import {
   INITIAL_PAGE_SIZE,
   TOTAL_NUMBER_OF_ITEMS,
 } from "./tableConfig";
+import useChartsStore from "@stores/chartStore";
 import { mapCharactersToTableData } from "./helpers";
 import type { CharactersTableEntry, TableParams } from "./types";
 import "./charactersTable.css";
@@ -17,6 +18,9 @@ export default function CharactersTable({
 }: {
   onCharacterSelect: ({ id, name }: { id: number; name: string }) => void;
 }) {
+  const {
+    filmsPieChart: { update: updateFilmsPieChartData },
+  } = useChartsStore();
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       current: 1,
@@ -38,6 +42,13 @@ export default function CharactersTable({
     },
   });
   const { data, fetching } = result;
+  const characterItems = data?.characters?.items;
+
+  useEffect(() => {
+    if (characterItems) {
+      updateFilmsPieChartData(characterItems.filter((item) => item !== null));
+    }
+  }, [characterItems, updateFilmsPieChartData]);
 
   const onPaginationChange = (page: number, pageSize: number) => {
     setTableParams({
@@ -66,7 +77,7 @@ export default function CharactersTable({
       className="characters-table"
       scroll={{ y: 700 }}
       columns={charactersTableColumns}
-      dataSource={mapCharactersToTableData(data?.characters?.items)}
+      dataSource={mapCharactersToTableData(characterItems)}
       loading={fetching}
       pagination={{
         ...tableParams.pagination,
