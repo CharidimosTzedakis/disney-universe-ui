@@ -10,6 +10,7 @@ export default defineConfig({
       "@gql": path.resolve(__dirname, "./src/gql"),
       "@api": path.resolve(__dirname, "./src/api"),
       "@layouts": path.resolve(__dirname, "./src/layouts"),
+      "@stores": path.resolve(__dirname, "./src/stores"),
     },
   },
   plugins: [react()],

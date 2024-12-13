@@ -5,7 +5,8 @@
       "@components/*": ["src/components/*"],
       "@gql/*": ["src/gql/*"],
       "@api/*": ["src/api/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@stores/*": ["src/stores/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
