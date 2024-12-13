@@ -4,6 +4,7 @@ import CharactersTable from "@components/charactersTable";
 import CharacterDetailsModal from "@components/characterDetailsModal";
 import SearchForm from "@components/searchForm";
 import CharactersPieChart from "@components/pieChart";
+import classes from "./dashboardLayout.module.scss";
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -21,29 +22,14 @@ export default function DashboardLayout() {
   return (
     <Flex>
       <Layout>
-        <Header
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 10,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            color: "white",
-          }}
-        >
-          <Title level={2} style={{ color: "white", padding: 0 }}>
-            Disney Characters Universe
-          </Title>
+        <Header className={classes.headerContainer}>
+          <Title level={2}>Disney Characters Universe</Title>
         </Header>
         <Content
+          className={classes.contentContainer}
           style={{
             background: colorBgContainer,
-            padding: 24,
             borderRadius: borderRadiusLG,
-            maxWidth: 1600,
-            height: "100vh",
-            alignSelf: "center",
           }}
         >
           <Title level={2}>Search characters</Title>

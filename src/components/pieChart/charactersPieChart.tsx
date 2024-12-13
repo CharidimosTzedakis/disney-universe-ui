@@ -1,13 +1,15 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import useChartsStore from "@stores/chartStore";
+import ExportToExcelButton from "./exportToExcelButton";
 import { options } from "./pieChartConfig";
+import classes from "./charactersPieChart.module.scss";
 
 export default function CharactersPieChart() {
   const { filmsPieChart } = useChartsStore();
 
   return (
-    <div>
+    <div className={classes.pieChartContainer}>
       <HighchartsReact
         highcharts={Highcharts}
         options={{
@@ -18,6 +20,7 @@ export default function CharactersPieChart() {
           },
         }}
       />
+      <ExportToExcelButton />
     </div>
   );
 }

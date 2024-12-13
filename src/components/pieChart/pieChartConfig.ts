@@ -24,6 +24,7 @@ export const options = {
   },
   plotOptions: {
     pie: {
+      size: "90%",
       allowPointSelect: true,
       cursor: "pointer",
       dataLabels: {

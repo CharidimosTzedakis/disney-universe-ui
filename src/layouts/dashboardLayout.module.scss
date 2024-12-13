@@ -1,0 +1,22 @@
+.headerContainer {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+}
+
+.contentContainer {
+  padding: 24px;
+  max-width: 1600px;
+  height: 100vh;
+  align-self: center;
+}
