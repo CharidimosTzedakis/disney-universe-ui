@@ -20,7 +20,7 @@ export default function CharactersPieChart() {
           },
         }}
       />
-      <ExportToExcelButton />
+      <ExportToExcelButton dataForExport={filmsPieChart.data} />
     </div>
   );
 }
