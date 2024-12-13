@@ -1,4 +1,5 @@
 import { Button, Form, Input, Space } from "antd";
+import { useState } from "react";
 
 const layout = {
   labelCol: { span: 8 },
@@ -9,11 +10,38 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
+type FormValues = { characterName: string; tvShow: string };
+
 export default function SearchForm() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const [disabledSearch, setDisabledSearch] = useState(true);
 
   const onReset = () => {
     form.resetFields();
+  };
+
+  const onValuesChange = (_: unknown, allValues: FormValues) => {
+    const { characterName, tvShow } = allValues;
+
+    if (!characterName && !tvShow) {
+      setDisabledSearch(true);
+    } else {
+      setDisabledSearch(false);
+    }
+  };
+
+  const onSubmit = async (values: FormValues) => {
+    setLoading(true);
+
+    try {
+      // API call
+      console.log("Form submitted with values:", values);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -21,7 +49,8 @@ export default function SearchForm() {
       {...layout}
       form={form}
       name="searchCharacterForm"
-      // onFinish={onFinish}
+      onValuesChange={onValuesChange}
+      onFinish={onSubmit}
       style={{ minWidth: 330 }}
     >
       <Form.Item name="characterName" label="Character name">
@@ -32,10 +61,15 @@ export default function SearchForm() {
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Space>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            disabled={disabledSearch}
+          >
             Search
           </Button>
-          <Button htmlType="button" onClick={onReset}>
+          <Button htmlType="button" onClick={onReset} disabled={loading}>
             Reset
           </Button>
         </Space>
