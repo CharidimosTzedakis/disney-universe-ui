@@ -26,8 +26,3 @@ To download any latest version of the graphQL schema, use the following command:
 ```bash
 get-graphql-schema https://api.disneyapi.dev/graphql > schema.graphql
 ```
-
-
-### Error handling
-
-### Accessibility
