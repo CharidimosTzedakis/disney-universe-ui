@@ -45,3 +45,5 @@ export const INITIAL_PAGE_SIZE = 50;
 // the total number of items is given in the docs
 // https://disneyapi.dev/docs/
 export const TOTAL_NUMBER_OF_ITEMS = 7438;
+
+export const MAX_SEARCH_RESULTS = 500;

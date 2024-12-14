@@ -7,8 +7,10 @@ import {
   pageSizeOptions,
   INITIAL_PAGE_SIZE,
   TOTAL_NUMBER_OF_ITEMS,
+  MAX_SEARCH_RESULTS,
 } from "./tableConfig";
 import useChartsStore from "@stores/chartStore";
+import useSearchStore from "@stores/searchStore";
 import { mapCharactersToTableData } from "./helpers";
 import type { CharactersTableEntry, TableParams } from "./types";
 import "./charactersTable.css";
@@ -21,6 +23,7 @@ export default function CharactersTable({
   const {
     filmsPieChart: { update: updateFilmsPieChartData },
   } = useChartsStore();
+  const { searchFilter, searchMode, setIsLoading } = useSearchStore();
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       current: 1,
@@ -37,8 +40,13 @@ export default function CharactersTable({
   const [result] = useQuery({
     query: charactersQueryDocument,
     variables: {
-      page: tableParams.pagination.current!,
-      pageSize: tableParams.pagination.pageSize!,
+      page: searchMode ? 1 : tableParams.pagination.current!,
+      pageSize: searchMode
+        ? MAX_SEARCH_RESULTS
+        : tableParams.pagination.pageSize!,
+      filter: searchMode
+        ? { name: searchFilter.name, tvShows: searchFilter.tvShow }
+        : {},
     },
   });
   const { data, fetching } = result;
@@ -49,6 +57,10 @@ export default function CharactersTable({
       updateFilmsPieChartData(characterItems.filter((item) => item !== null));
     }
   }, [characterItems, updateFilmsPieChartData]);
+
+  useEffect(() => {
+    setIsLoading(fetching);
+  }, [fetching]);
 
   const onPaginationChange = (page: number, pageSize: number) => {
     setTableParams({
@@ -79,10 +91,14 @@ export default function CharactersTable({
       columns={charactersTableColumns}
       dataSource={mapCharactersToTableData(characterItems)}
       loading={fetching}
-      pagination={{
-        ...tableParams.pagination,
-        onChange: onPaginationChange,
-      }}
+      pagination={
+        searchMode
+          ? false
+          : {
+              ...tableParams.pagination,
+              onChange: onPaginationChange,
+            }
+      }
       rowClassName={rowClassName}
       onRow={(record) => ({
         onClick: () => onRowClick(record),

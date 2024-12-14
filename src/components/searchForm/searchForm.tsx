@@ -1,5 +1,6 @@
-import { Button, Form, Input, Space } from "antd";
 import { useState } from "react";
+import { Button, Form, Input, Space } from "antd";
+import useSearchStore from "@stores/searchStore";
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,8 +15,9 @@ type FormValues = { characterName: string; tvShow: string };
 
 export default function SearchForm() {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
   const [disabledSearch, setDisabledSearch] = useState(true);
+
+  const { setSearchFilter, isLoading } = useSearchStore();
 
   const onReset = () => {
     form.resetFields();
@@ -32,16 +34,8 @@ export default function SearchForm() {
   };
 
   const onSubmit = async (values: FormValues) => {
-    setLoading(true);
-
-    try {
-      // API call
-      console.log("Form submitted with values:", values);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+    const { characterName, tvShow } = values;
+    setSearchFilter({ name: characterName, tvShow });
   };
 
   return (
@@ -54,23 +48,23 @@ export default function SearchForm() {
       style={{ minWidth: 330 }}
     >
       <Form.Item name="characterName" label="Character name">
-        <Input />
+        <Input disabled={isLoading} />
       </Form.Item>
       <Form.Item name="tvShow" label="Tv show">
-        <Input />
+        <Input disabled={isLoading} />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Space>
           <Button
             type="primary"
             htmlType="submit"
-            loading={loading}
+            loading={isLoading}
             disabled={disabledSearch}
           >
             Search
           </Button>
-          <Button htmlType="button" onClick={onReset} disabled={loading}>
-            Reset
+          <Button htmlType="button" onClick={onReset} disabled={isLoading}>
+            Clear fields
           </Button>
         </Space>
       </Form.Item>
