@@ -1,8 +1,12 @@
 import { graphql } from "@gql/gql";
 
 export const charactersQueryDocument = graphql(`
-  query allCharacters($page: Int!, $pageSize: Int!) {
-    characters(page: $page, pageSize: $pageSize) {
+  query allCharacters(
+    $page: Int!
+    $pageSize: Int!
+    $filter: CharacterFilterInput!
+  ) {
+    characters(page: $page, pageSize: $pageSize, filter: $filter) {
       items {
         _id
         name
