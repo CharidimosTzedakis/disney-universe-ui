@@ -4,6 +4,7 @@ import CharactersTable from "@components/charactersTable";
 import CharacterDetailsModal from "@components/characterDetailsModal";
 import SearchForm from "@components/searchForm";
 import CharactersPieChart from "@components/pieChart";
+import ClearSearchResultsButton from "@components/clearSearchResultsButton";
 import classes from "./dashboardLayout.module.scss";
 
 const { Header, Content } = Layout;
@@ -37,7 +38,10 @@ export default function DashboardLayout() {
             <SearchForm />
           </Flex>
           <Divider />
-          <Title level={2}>Characters Table</Title>
+          <Flex>
+            <Title level={2}>Characters Table</Title>
+            <ClearSearchResultsButton />
+          </Flex>
           <Flex vertical={false} wrap align="center" gap="middle">
             <CharactersTable
               onCharacterSelect={({ id, name }: { id: number; name: string }) =>
