@@ -60,7 +60,7 @@ export default function CharactersTable({
 
   useEffect(() => {
     setIsLoading(fetching);
-  }, [fetching]);
+  }, [fetching, setIsLoading]);
 
   const onPaginationChange = (page: number, pageSize: number) => {
     setTableParams({

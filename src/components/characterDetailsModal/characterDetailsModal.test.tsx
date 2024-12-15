@@ -1,24 +1,15 @@
-import { expect, describe, it, vi } from "vitest";
+import { expect, describe, it } from "vitest";
 import { render } from "@testing-library/react";
 import { Provider } from "urql";
 import { never, fromValue } from "wonka";
-import CharacterDetailsModal from "./characterDetailsModal";
+import CharacterDetailsModal from "./index";
 import { charactersWithDetails } from "@test/fixtures";
 
-vi.mock(import("urql"), async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    seQuery: vi.fn().mockReturnValue([{ fetching: true }]),
-  };
-});
-
 describe("CharacterDetailsModal", () => {
-  const fetchingState = {
-    executeQuery: () => never,
-  };
-
   it("renders correctly in loading state", async () => {
+    const fetchingState = {
+      executeQuery: () => never,
+    };
     render(
       <Provider value={fetchingState}>
         <CharacterDetailsModal
