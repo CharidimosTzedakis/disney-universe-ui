@@ -1,7 +1,19 @@
-import { vi, beforeAll } from 'vitest';
+import { vi } from "vitest";
 
-beforeAll(() => {
-  global.window.getComputedStyle = vi.fn().mockImplementation(() => ({
-    getPropertyValue: vi.fn().mockReturnValue("value"),
-  }));
+window.getComputedStyle = vi.fn().mockImplementation(() => ({
+  getPropertyValue: vi.fn().mockReturnValue("value"),
+}));
+
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // Deprecated
+    removeListener: vi.fn(), // Deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }),
 });
