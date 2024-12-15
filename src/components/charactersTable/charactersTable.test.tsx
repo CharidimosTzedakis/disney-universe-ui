@@ -1,6 +1,8 @@
 import { expect, describe, it, vi } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "urql";
+import useSearchStore from "@stores/searchStore";
 import CharactersTable from "./index";
 import { fromValue } from "wonka";
 import { characterItems } from "@test/fixtures";
@@ -42,20 +44,82 @@ describe("<CharactersTable />", () => {
         }),
     };
 
-    render(
+    const { container } = render(
       <Provider value={fetchingState}>
         <CharactersTable onCharacterSelect={onCharacterSelect} />
       </Provider>,
     );
 
-    //click a row
+    const row = container.querySelector('[data-row-key="112"]');
+    await userEvent.click(row!);
     expect(onCharacterSelect).toHaveBeenCalledTimes(1);
+    expect(onCharacterSelect).toHaveBeenCalledWith({
+      id: 112,
+      name: "Achilles",
+    });
   });
 
-  it("renders correctly the search results", () => {});
+  it("renders correctly the search results", () => {
+    const fetchingState = {
+      executeQuery: () =>
+        fromValue({
+          fetching: false,
+          data: {
+            characters: {
+              items: [characterItems[0], characterItems[1]],
+            },
+          },
+        }),
+    };
+    useSearchStore.setState({ searchMode: true });
+
+    const { container } = render(
+      <Provider value={fetchingState}>
+        <CharactersTable onCharacterSelect={() => {}} />
+      </Provider>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
 
   describe("pagination", () => {
-    it("navigates to previous page", () => {});
+    it("navigates to next page", async () => {
+      const fetchingState = {
+        executeQuery: vi.fn(() =>
+          fromValue({
+            fetching: false,
+            data: {
+              characters: {
+                items: [...characterItems],
+              },
+            },
+          }),
+        ),
+      };
+
+      render(
+        <Provider value={fetchingState}>
+          <CharactersTable onCharacterSelect={() => {}} />
+        </Provider>,
+      );
+
+      const nextPageButton = await screen.findByTitle("Next Page");
+      await userEvent.click(nextPageButton);
+
+      expect(fetchingState.executeQuery).toHaveBeenCalledTimes(2);
+      expect(fetchingState.executeQuery).toHaveBeenNthCalledWith(
+        2,
+        expect.objectContaining({
+          variables: {
+            filter: {},
+            page: 2,
+            pageSize: 50,
+          },
+        }),
+        {},
+      );
+    });
+
     it("navigates to next page", () => {});
     it("navigates to a specific page", () => {});
   });
