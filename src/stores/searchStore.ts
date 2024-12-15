@@ -12,6 +12,7 @@ interface SearchState {
   setSearchFilter: (filter: SearchFilter) => void;
   resetFilter: () => void;
   setIsLoading: (isLoading: boolean) => void;
+  reset: () => void;
 }
 
 const useSearchStore = create<SearchState>((set) => ({
@@ -22,15 +23,22 @@ const useSearchStore = create<SearchState>((set) => ({
     tvShow: null,
   },
   setSearchFilter: (searchFilter: SearchFilter) =>
-    set((state) => ({ ...state, searchFilter, searchMode: true })),
+    set(() => ({ searchFilter, searchMode: true })),
   resetFilter: () =>
-    set((state) => ({
-      ...state,
+    set(() => ({
       searchFilter: { name: null, tvShow: null },
       searchMode: false,
     })),
-  setIsLoading: (isLoading: boolean) =>
-    set((state) => ({ ...state, isLoading })),
+  setIsLoading: (isLoading: boolean) => set(() => ({ isLoading })),
+  reset: () =>
+    set(() => ({
+      searchMode: false,
+      isLoading: false,
+      searchFilter: {
+        name: null,
+        tvShow: null,
+      },
+    })),
 }));
 
 export default useSearchStore;

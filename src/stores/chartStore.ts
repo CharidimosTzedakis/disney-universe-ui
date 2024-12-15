@@ -11,6 +11,7 @@ interface ChartsState {
   filmsPieChart: {
     data: FilmsPieChartDataPoint[];
     update: (data: Character[]) => void;
+    reset: () => void;
   };
 }
 
@@ -31,6 +32,13 @@ const useChartsStore = create<ChartsState>((set) => ({
         filmsPieChart: {
           ...state.filmsPieChart,
           data: mapCharactersToDataPoints(data),
+        },
+      })),
+    reset: () =>
+      set((state) => ({
+        filmsPieChart: {
+          ...state.filmsPieChart,
+          data: [],
         },
       })),
   },
