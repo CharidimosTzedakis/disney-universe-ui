@@ -1,4 +1,7 @@
-import { vi } from "vitest";
+import { vi, beforeEach } from "vitest";
+import "@testing-library/jest-dom";
+import useSearchStore from "@stores/searchStore";
+import useChartsStore from "@stores/chartStore";
 
 window.getComputedStyle = vi.fn().mockImplementation(() => ({
   getPropertyValue: vi.fn().mockReturnValue("value"),
@@ -16,4 +19,9 @@ Object.defineProperty(window, "matchMedia", {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   }),
+});
+
+beforeEach(() => {
+  useSearchStore.getState().reset();
+  useChartsStore.getState().filmsPieChart.reset();
 });
