@@ -1,8 +1,9 @@
-import { expect, describe, it, vi, beforeAll } from "vitest";
+import { expect, describe, it, vi } from "vitest";
 import { render } from "@testing-library/react";
-import { never } from "wonka";
-import CharacterDetailsModal from "./characterDetailsModal";
 import { Provider } from "urql";
+import { never, fromValue } from "wonka";
+import CharacterDetailsModal from "./characterDetailsModal";
+import { charactersWithDetails } from "@test/fixtures";
 
 vi.mock(import("urql"), async (importOriginal) => {
   const actual = await importOriginal();
@@ -13,12 +14,6 @@ vi.mock(import("urql"), async (importOriginal) => {
 });
 
 describe("CharacterDetailsModal", () => {
-  beforeAll(() => {
-    global.window.getComputedStyle = vi.fn().mockImplementation(() => ({
-      getPropertyValue: vi.fn().mockReturnValue("value"),
-    }));
-  });
-
   const fetchingState = {
     executeQuery: () => never,
   };
@@ -27,8 +22,32 @@ describe("CharacterDetailsModal", () => {
     render(
       <Provider value={fetchingState}>
         <CharacterDetailsModal
-          isOpen
+          isOpen={true}
           selectedCharacter={{ id: 2, name: "Achilles" }}
+          onClose={() => {}}
+        />
+      </Provider>,
+    );
+    expect(document.body).toMatchSnapshot();
+  });
+
+  it("renders details for a specific character", async () => {
+    const fetchingState = {
+      executeQuery: () =>
+        fromValue({
+          data: {
+            characters: {
+              items: [charactersWithDetails[0]],
+            },
+          },
+        }),
+    };
+
+    render(
+      <Provider value={fetchingState}>
+        <CharacterDetailsModal
+          isOpen={true}
+          selectedCharacter={{ id: 1, name: "Achilles" }}
           onClose={() => {}}
         />
       </Provider>,
