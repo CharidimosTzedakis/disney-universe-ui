@@ -1,0 +1,135 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchForm > should render correctly 1`] = `
+<div>
+  <form
+    class="ant-form ant-form-horizontal css-dev-only-do-not-override-142vneq"
+    id="searchCharacterForm"
+    style="min-width: 330px;"
+  >
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-8 ant-form-item-label css-dev-only-do-not-override-142vneq"
+        >
+          <label
+            class=""
+            for="searchCharacterForm_characterName"
+            title="Character name"
+          >
+            Character name
+          </label>
+        </div>
+        <div
+          class="ant-col ant-col-16 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <input
+                class="ant-input css-dev-only-do-not-override-142vneq ant-input-outlined"
+                id="searchCharacterForm_characterName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-8 ant-form-item-label css-dev-only-do-not-override-142vneq"
+        >
+          <label
+            class=""
+            for="searchCharacterForm_tvShow"
+            title="Tv show"
+          >
+            Tv show
+          </label>
+        </div>
+        <div
+          class="ant-col ant-col-16 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <input
+                class="ant-input css-dev-only-do-not-override-142vneq ant-input-outlined"
+                id="searchCharacterForm_tvShow"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-16 ant-col-offset-8 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <div
+                class="ant-space css-dev-only-do-not-override-142vneq ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+              >
+                <div
+                  class="ant-space-item"
+                >
+                  <button
+                    class="ant-btn css-dev-only-do-not-override-142vneq ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+                    disabled=""
+                    type="submit"
+                  >
+                    <span>
+                      Search
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="ant-space-item"
+                >
+                  <button
+                    class="ant-btn css-dev-only-do-not-override-142vneq ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+                    type="button"
+                  >
+                    <span>
+                      Clear fields
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
