@@ -2,7 +2,7 @@
 
 ## Description
 The Disney universe ui app utilizes the [Disney API](https://disneyapi.dev/) to provide a way to navigate through and 
-explore data about disney characters that the API provides. <br/>
+explore various disney characters. <br/>
 In more detail:
 - it provides a table where the user can browse all the available disney characters and see some first info about them
 - if the user clicks on a table row, more details are revealed for the character
