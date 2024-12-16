@@ -5,7 +5,7 @@ The Disney universe ui app utilizes the [Disney API](https://disneyapi.dev/) to 
 explore various disney characters. <br/>
 In more detail:
 - it provides a table where the user can browse all the available disney characters and see some first info about them
-- if the user clicks on a table row, more details are revealed for the character
+- if the user clicks on a table row, more details are revealed for the character in a modal
 - a pie chart is created from the current page of the table, showing information about the characters and the films they
 appear
 - the data of the current pie chart view can be exported to an excel file
@@ -16,7 +16,7 @@ appear
 
 ### Prerequisites
 Ensure you have installed the following:
-- `Node.js` Version 16 or above
+- `Node.js` version 16 or above
 - `pnpm` package manager
 
 ### Setup and run 
