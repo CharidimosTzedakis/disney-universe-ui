@@ -11,6 +11,11 @@ appear
 - the data of the current pie chart view can be exported to an excel file
 - Search functionality is provided, using character name or tv show name
 - the search results are shown in the table, with a clear results button to reset the table to the previous view
+<br/>
+App screenshot:
+<br/>
+![App Screenshot](./src/assets/disney_universe_app.png)
+
 
 ## Getting started 
 
