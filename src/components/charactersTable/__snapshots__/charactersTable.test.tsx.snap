@@ -1,5 +1,73 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`<CharactersTable /> > external state interactions > updates the films pie chart data 1`] = `
+[
+  {
+    "films": [
+      "Hercules (film)",
+    ],
+    "name": "Achilles",
+    "y": 1,
+  },
+  {
+    "films": [
+      "The Fox and the Hound",
+      "The Fox and the Hound 2",
+    ],
+    "name": "Abigail the Cow",
+    "y": 2,
+  },
+  {
+    "films": [
+      "Cheetah",
+    ],
+    "name": "Abdullah",
+    "y": 1,
+  },
+  {
+    "films": [
+      "Mary Poppins (film)",
+      "Mary Poppins Returns",
+    ],
+    "name": "Admiral Boom and Mr. Binnacle",
+    "y": 2,
+  },
+  {
+    "films": [],
+    "name": ".GIFfany",
+    "y": 0,
+  },
+  {
+    "films": [],
+    "name": "90's Adventure Bear",
+    "y": 0,
+  },
+  {
+    "films": [],
+    "name": "Candace Adams",
+    "y": 0,
+  },
+  {
+    "films": [
+      "The Lion King",
+      "The Lion King (2019 film)",
+    ],
+    "name": "Ahadi",
+    "y": 2,
+  },
+  {
+    "films": [],
+    "name": "Al Muddy Sultan",
+    "y": 0,
+  },
+  {
+    "films": [],
+    "name": "Irwina Allen",
+    "y": 0,
+  },
+]
+`;
+
 exports[`<CharactersTable /> > renders correctly 1`] = `
 <div>
   <div
