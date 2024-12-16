@@ -160,8 +160,8 @@ describe("<CharactersTable />", () => {
       );
     });
 
-    it.skip("navigates to a specific page", () => {});
-    it.skip("changes the page size", () => {});
+    // it.skip("navigates to a specific page", () => {});
+    // it.skip("changes the page size", () => {});
   });
 
   describe("external state interactions", () => {

@@ -12,7 +12,7 @@ exports[`<CharactersPieChart/> > should render correctly 1`] = `
       <div
         class="highcharts-container "
         dir="ltr"
-        id="highcharts-6kjljnl-0"
+        id="highcharts-placeholder-id"
         style="position: relative; overflow: hidden; width: 600px; height: 400px; text-align: left; line-height: normal; z-index: 0; user-select: none; outline: none; padding: 0px;"
       >
         <svg
@@ -31,7 +31,7 @@ exports[`<CharactersPieChart/> > should render correctly 1`] = `
           </desc>
           <defs>
             <filter
-              id="highcharts-drop-shadow-0"
+              id="highcharts-placeholder-id"
             >
               <fedropshadow
                 dx="1"
