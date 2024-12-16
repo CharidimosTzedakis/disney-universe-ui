@@ -50,12 +50,15 @@ export default function DashboardLayout() {
                 setSelectedCharacter({ id, name })
               }
             />
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <ErrorBoundary
+              FallbackComponent={ErrorFallback}
+              fallback={undefined}
+            >
               <CharactersPieChart />
             </ErrorBoundary>
           </Flex>
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <ErrorBoundary FallbackComponent={ErrorFallback} fallback={undefined}>
             <CharacterDetailsModal
               isOpen={!!selectedCharacter}
               selectedCharacter={selectedCharacter}
