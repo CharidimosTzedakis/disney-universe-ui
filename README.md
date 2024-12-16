@@ -14,7 +14,7 @@ appear
 <br/>
 App screenshot:
 <br/>
-![App Screenshot](./src/assets/disney_universe_app.png)
+![App Screenshot](disney_universe_app.png)
 
 
 ## Getting started 
