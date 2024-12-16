@@ -2,17 +2,20 @@ import { expect, describe, it } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import useSearchStore from "@stores/searchStore";
-
 import SearchForm from "./index";
 
 describe("SearchForm", () => {
   it("should render correctly", () => {
     const { container } = render(<SearchForm />);
-
     expect(container).toMatchSnapshot();
   });
 
-  it("should render as disabled when data are loading", () => {});
+  it("should render as disabled when data are loading", () => {
+    useSearchStore.getState().setIsLoading(true);
+
+    const { container } = render(<SearchForm />);
+    expect(container).toMatchSnapshot();
+  });
 
   describe("Search button", () => {
     it("should be disabled if no text is typed in the form", () => {
@@ -64,14 +67,15 @@ describe("SearchForm", () => {
     it.only("should clear the form fields", async () => {
       render(<SearchForm />);
       const clearButton = screen.getByRole("button", { name: /Clear fields/i });
-      const searchFieldCharacterName = screen.getByLabelText(/character name/i);
-      const searchFieldTvShow = screen.getByLabelText(/tv show/i);
+      let searchFieldCharacterName = screen.getByLabelText(/character name/i);
+      let searchFieldTvShow = screen.getByLabelText(/tv show/i);
 
       await userEvent.type(searchFieldCharacterName, "Achilles");
       await userEvent.type(searchFieldTvShow, "tv show 1");
       await userEvent.click(clearButton);
 
-      console.log(searchFieldCharacterName);
+      searchFieldCharacterName = screen.getByLabelText(/character name/i);
+      searchFieldTvShow = screen.getByLabelText(/tv show/i);
 
       await waitFor(() => {
         expect(searchFieldCharacterName).toHaveValue("");

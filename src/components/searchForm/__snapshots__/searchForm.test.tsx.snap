@@ -1,5 +1,165 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`SearchForm > should render as disabled when data are loading 1`] = `
+<div>
+  <form
+    class="ant-form ant-form-horizontal css-dev-only-do-not-override-142vneq"
+    id="searchCharacterForm"
+    style="min-width: 330px;"
+  >
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-8 ant-form-item-label css-dev-only-do-not-override-142vneq"
+        >
+          <label
+            class=""
+            for="searchCharacterForm_characterName"
+            title="Character name"
+          >
+            Character name
+          </label>
+        </div>
+        <div
+          class="ant-col ant-col-16 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <input
+                class="ant-input ant-input-disabled css-dev-only-do-not-override-142vneq ant-input-outlined"
+                disabled=""
+                id="searchCharacterForm_characterName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-8 ant-form-item-label css-dev-only-do-not-override-142vneq"
+        >
+          <label
+            class=""
+            for="searchCharacterForm_tvShow"
+            title="Tv show"
+          >
+            Tv show
+          </label>
+        </div>
+        <div
+          class="ant-col ant-col-16 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <input
+                class="ant-input ant-input-disabled css-dev-only-do-not-override-142vneq ant-input-outlined"
+                disabled=""
+                id="searchCharacterForm_tvShow"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-form-item css-dev-only-do-not-override-142vneq"
+    >
+      <div
+        class="ant-row ant-form-item-row css-dev-only-do-not-override-142vneq"
+      >
+        <div
+          class="ant-col ant-col-16 ant-col-offset-8 ant-form-item-control css-dev-only-do-not-override-142vneq"
+        >
+          <div
+            class="ant-form-item-control-input"
+          >
+            <div
+              class="ant-form-item-control-input-content"
+            >
+              <div
+                class="ant-space css-dev-only-do-not-override-142vneq ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+              >
+                <div
+                  class="ant-space-item"
+                >
+                  <button
+                    class="ant-btn css-dev-only-do-not-override-142vneq ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-loading"
+                    disabled=""
+                    type="submit"
+                  >
+                    <span
+                      class="ant-btn-icon ant-btn-loading-icon"
+                    >
+                      <span
+                        aria-label="loading"
+                        class="anticon anticon-loading anticon-spin"
+                        role="img"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          data-icon="loading"
+                          fill="currentColor"
+                          focusable="false"
+                          height="1em"
+                          viewBox="0 0 1024 1024"
+                          width="1em"
+                        >
+                          <path
+                            d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      Search
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="ant-space-item"
+                >
+                  <button
+                    class="ant-btn css-dev-only-do-not-override-142vneq ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+                    disabled=""
+                    type="button"
+                  >
+                    <span>
+                      Clear fields
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
 exports[`SearchForm > should render correctly 1`] = `
 <div>
   <form
