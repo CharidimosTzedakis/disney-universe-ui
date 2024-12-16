@@ -66,6 +66,7 @@ and are available immediately
 for its components
 
 ## Next steps
+- add search result count
 - Specific skeletons as placeholders for modal
 - modal polishing/styling improvements
 - cypress integration and e2e tests
