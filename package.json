@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "codegen": "graphql-codegen",
-    "test": "vitest"
+    "test-dev": "vitest --reporter=verbose",
+    "test": "vitest run"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",

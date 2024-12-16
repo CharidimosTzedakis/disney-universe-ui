@@ -64,7 +64,7 @@ describe("SearchForm", () => {
   });
 
   describe("Clear fields button", () => {
-    it.only("should clear the form fields", async () => {
+    it("should clear the form fields", async () => {
       render(<SearchForm />);
       const clearButton = screen.getByRole("button", { name: /Clear fields/i });
       let searchFieldCharacterName = screen.getByLabelText(/character name/i);
