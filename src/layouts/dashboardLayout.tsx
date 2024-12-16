@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Flex, Layout, Typography, theme, Divider } from "antd";
+import { ErrorBoundary } from "react-error-boundary";
 import CharactersTable from "@components/charactersTable";
 import CharacterDetailsModal from "@components/characterDetailsModal";
 import SearchForm from "@components/searchForm";
 import CharactersPieChart from "@components/pieChart";
 import ClearSearchResultsButton from "@components/clearSearchResultsButton";
+import ErrorFallback from "@layouts/errorFallback";
 import classes from "./dashboardLayout.module.scss";
 
 const { Header, Content } = Layout;
@@ -48,16 +50,20 @@ export default function DashboardLayout() {
                 setSelectedCharacter({ id, name })
               }
             />
-            <CharactersPieChart />
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <CharactersPieChart />
+            </ErrorBoundary>
           </Flex>
 
-          <CharacterDetailsModal
-            isOpen={!!selectedCharacter}
-            selectedCharacter={selectedCharacter}
-            onClose={() => {
-              setSelectedCharacter(null);
-            }}
-          />
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <CharacterDetailsModal
+              isOpen={!!selectedCharacter}
+              selectedCharacter={selectedCharacter}
+              onClose={() => {
+                setSelectedCharacter(null);
+              }}
+            />
+          </ErrorBoundary>
         </Content>
       </Layout>
     </Flex>
