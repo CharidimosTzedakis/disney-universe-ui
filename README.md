@@ -12,9 +12,7 @@ appear
 - Search functionality is provided, using character name or tv show name
 - the search results are shown in the table, with a clear results button to reset the table to the previous view
 <br/>
-App screenshot:
-<br/>
-![App Screenshot](disney_universe_app.png)
+[App Screenshot](https://github.com/CharidimosTzedakis/disney-universe-ui/blob/main/disney_universe_app.png)
 
 
 ## Getting started 
