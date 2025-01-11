@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useShallow } from "zustand/shallow";
 import { Button, Form, Input, Space } from "antd";
 import useSearchStore from "@stores/searchStore";
 
@@ -17,7 +18,12 @@ export default function SearchForm() {
   const [form] = Form.useForm();
   const [disabledSearch, setDisabledSearch] = useState(true);
 
-  const { setSearchFilter, isLoading } = useSearchStore();
+  const { setSearchFilter, isLoading } = useSearchStore(
+    useShallow((state) => ({
+      setSearchFilter: state.setSearchFilter,
+      isLoading: state.isLoading,
+    })),
+  );
 
   const onReset = () => {
     form.resetFields();

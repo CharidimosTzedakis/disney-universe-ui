@@ -1,4 +1,5 @@
 import Highcharts from "highcharts";
+import { useShallow } from "zustand/shallow";
 import HighchartsReact from "highcharts-react-official";
 import useChartsStore from "@stores/chartStore";
 import ExportToExcelButton from "./exportToExcelButton";
@@ -6,7 +7,9 @@ import { options } from "./pieChartConfig";
 import classes from "./charactersPieChart.module.scss";
 
 export default function CharactersPieChart() {
-  const { filmsPieChart } = useChartsStore();
+  const { filmsPieChart } = useChartsStore(
+    useShallow((state) => ({ filmsPieChart: state.filmsPieChart })),
+  );
 
   return (
     <div className={classes.pieChartContainer}>

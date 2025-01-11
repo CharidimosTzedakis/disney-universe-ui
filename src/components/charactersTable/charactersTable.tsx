@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useShallow } from "zustand/shallow";
 import { useQuery } from "urql";
 import { charactersQueryDocument } from "@api/gqlQueries";
 import { Table } from "antd";
@@ -23,7 +24,13 @@ export default function CharactersTable({
   const {
     filmsPieChart: { update: updateFilmsPieChartData },
   } = useChartsStore();
-  const { searchFilter, searchMode, setIsLoading } = useSearchStore();
+  const { searchFilter, searchMode, setIsLoading } = useSearchStore(
+    useShallow((state) => ({
+      searchFilter: state.searchFilter,
+      searchMode: state.searchMode,
+      setIsLoading: state.setIsLoading,
+    })),
+  );
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       current: 1,
